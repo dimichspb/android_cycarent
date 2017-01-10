@@ -109,6 +109,6 @@
         completions."
     </string>
 
-    <string name="default_userName">Sarah</string>
-    <string name="default_userCity">San Marino</string>
+    <string name="default_typeSeats">2</string>
+    <string name="default_typeDoors">3</string>
 </resources>

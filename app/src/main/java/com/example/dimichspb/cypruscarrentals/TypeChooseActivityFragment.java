@@ -21,19 +21,22 @@ public class TypeChooseActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_type_choose, container, false);
-        popuplateUsersList(view);
+        popuplateTypesList(view);
         return view;
     }
 
 
-    private void popuplateUsersList(View view) {
+    private void popuplateTypesList(View view) {
         // Construct the data source
-        ArrayList<User> arrayOfUsers = User.getUsers();
+        ArrayList<Type> types = new ArrayList<Type>();
+
         // Create the adapter to convert the array to views
-        UsersAdapter adapter = new UsersAdapter(this.getActivity(), arrayOfUsers);
+        TypesAdapter adapter = new TypesAdapter(this.getActivity(), types);
+        LoadFeedData loadFeedData = new LoadFeedData(adapter);
         // Attach the adapter to a ListView
-        ListView listView = (ListView) view.findViewById(R.id.listview_users);
+        ListView listView = (ListView) view.findViewById(R.id.listview_types);
         listView.setAdapter(adapter);
 
+        loadFeedData.execute();
     }
 }

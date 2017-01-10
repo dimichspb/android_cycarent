@@ -12,7 +12,7 @@
     tools:showIn="@layout/activity_type_choose">
 
     <ListView
-        android:id="@+id/listview_users"
+        android:id="@+id/listview_types"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"

@@ -6,30 +6,30 @@
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/textview_userName"
-        android:layout_alignBaseline="@+id/imageview_userIcon"
-        android:layout_toRightOf="@+id/imageview_userIcon"
+        android:id="@+id/textview_typeSeats"
+        android:layout_alignBaseline="@+id/imageview_typeIcon"
+        android:layout_toRightOf="@+id/imageview_typeIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:paddingRight="6dp"
-        android:text="@string/default_userName"
+        android:text="@string/default_typeSeats"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
-        android:id="@+id/textview_userCity"
+        android:id="@+id/textview_typeDoors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textview_userName"
-        android:layout_toRightOf="@+id/textview_userName"
-        android:text="@string/default_userCity"
+        android:layout_alignBaseline="@+id/textview_typeSeats"
+        android:layout_toRightOf="@+id/textview_typeSeats"
+        android:text="@string/default_typeDoors"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageView
-        android:id="@+id/imageview_userIcon"
+        android:id="@+id/imageview_typeIcon"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/user_icon"/>
+        android:src="@drawable/type_icon"/>
 </RelativeLayout>
