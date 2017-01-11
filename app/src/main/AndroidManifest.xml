@@ -21,7 +21,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -38,10 +37,19 @@
             android:name=".ContactUsActivity"
             android:label="@string/title_activity_contact_us"
             android:parentActivityName=".TypeChooseActivity"
-            android:theme= "@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.dimichspb.cypruscarrentals.TypeChooseActivity" />
+        </activity>
+        <activity
+            android:name=".DateChooseActivity"
+            android:label="@string/title_activity_date_choose"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dimichspb.cypruscarrentals.TypeChooseActivity" />
+            >
         </activity>
     </application>
 

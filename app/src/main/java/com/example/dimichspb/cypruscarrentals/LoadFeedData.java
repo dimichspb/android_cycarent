@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class LoadFeedData extends AsyncTask<Void, Void, ArrayList<Type>>{
-    private final String url = "http://carrent.dev/api/type?access-token=1IjXxr5rCC4lUfHjHacHQuLu_iIuxYY-";
+    private final String url = "http://10.0.2.2:80/api/type?access-token=1IjXxr5rCC4lUfHjHacHQuLu_iIuxYY-";
 
     private final TypesAdapter adapter;
 

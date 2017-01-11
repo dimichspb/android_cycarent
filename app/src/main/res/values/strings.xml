@@ -4,6 +4,7 @@
     <string name="action_about_us">About us</string>
     <string name="action_contact_us">Contact us</string>
     <string name="action_exit">Exit</string>
+    <string name="title_activity_date_choose">Choose dates</string>
     <string name="title_activity_about_us">About Cyprus Car Rentals</string>
     <string name="title_activity_contact_ud">Contact Cyprus Car Rentals</string>
     <string name="large_text">
@@ -111,4 +112,13 @@
 
     <string name="default_typeSeats">2</string>
     <string name="default_typeDoors">3</string>
+
+    <string name="text_choose_type">Choose vehicle\'s type</string>
+    <string name="text_choose_date_start">Start at:</string>
+    <string name="hint_date_start">Date</string>
+    <string name="hint_time_start">Time</string>
+    <string name="text_choose_date_end">Finish at:</string>
+    <string name="hint_date_end">Date</string>
+    <string name="hint_time_end">Time</string>
+
 </resources>
