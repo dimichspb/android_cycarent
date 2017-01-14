@@ -55,6 +55,8 @@ public abstract class AbstractBaseActivity extends AppCompatActivity {
     }
 
     public void exitApplication() {
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
         finish();
         System.exit(0);
     }

@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class LoadFeedData extends AsyncTask<Void, Void, ArrayList<Type>>{
-    private final String url = "http://10.0.2.2:80/api/type?access-token=1IjXxr5rCC4lUfHjHacHQuLu_iIuxYY-";
+    private final String url = "http://api.carrent.dimichspb.webfactional.com/type";
 
     private final TypesAdapter adapter;
 
@@ -42,7 +42,9 @@ public class LoadFeedData extends AsyncTask<Void, Void, ArrayList<Type>>{
 
             JSONArray jsonArray = new JSONArray(JSONResponse);
             for (int i=0; i < jsonArray.length(); i++) {
-                types.add(new Type(jsonArray.getJSONObject(i)));
+                Type type = new Type();
+                type.fromJson(jsonArray.getJSONObject(i));
+                types.add(type);
             }
         } catch (Throwable t) {
             t.printStackTrace();

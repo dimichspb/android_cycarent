@@ -6,30 +6,54 @@
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/textview_typeSeats"
-        android:layout_alignBaseline="@+id/imageview_typeIcon"
-        android:layout_toRightOf="@+id/imageview_typeIcon"
+        android:id="@+id/textview_typeCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:paddingRight="6dp"
-        android:text="@string/default_typeSeats"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-
-    <TextView
-        android:id="@+id/textview_typeDoors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textview_typeSeats"
-        android:layout_toRightOf="@+id/textview_typeSeats"
-        android:text="@string/default_typeDoors"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/imageview_typeIcon"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/type_icon"/>
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/textview_doors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/imageview_typeIcon"
+        android:text="@string/text_doors"/>
+
+    <TextView
+        android:id="@+id/textview_typeDoors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textview_doors"
+        android:layout_toRightOf="@+id/textview_doors"
+        android:layout_marginLeft="15dp"
+        android:text="@string/default_typeDoors"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textview_seats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textview_doors"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@+id/textview_typeDoors"
+        android:text="@string/text_seats"/>
+
+    <TextView
+        android:id="@+id/textview_typeSeats"
+        android:layout_alignBaseline="@+id/textview_doors"
+        android:layout_toRightOf="@+id/textview_seats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="@string/default_typeSeats"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
 </RelativeLayout>

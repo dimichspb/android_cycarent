@@ -1,22 +1,35 @@
 package com.example.dimichspb.cypruscarrentals;
 
+import android.accounts.AccountManager;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.common.AccountPicker;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -28,11 +41,15 @@ public class DateChooseActivityFragment extends Fragment {
     TextView timeStart;
     TextView dateEnd;
     TextView timeEnd;
+
+    TextView email;
     
     Button dateStartButton;
     Button timeStartButton;
     Button dateEndButton;
     Button timeEndButton;
+
+    Button emailButton;
 
     Calendar dateAndTimeStart = Calendar.getInstance();
     Calendar dateAndTimeEnd = Calendar.getInstance();
@@ -42,7 +59,11 @@ public class DateChooseActivityFragment extends Fragment {
     DatePickerDialog datePickerDialogEnd;
     TimePickerDialog timePickerDialogEnd;
 
+    Request request;
 
+    FloatingActionButton sendRequestButton;
+
+    private static final int REQUEST_CODE_EMAIL = 1;
 
     public DateChooseActivityFragment() {
     }
@@ -50,13 +71,54 @@ public class DateChooseActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Intent intent = getActivity().getIntent();
+        this.request = (Request) intent.getSerializableExtra("request");
+
+        Type type = this.request.getType();
+
         View view = inflater.inflate(R.layout.fragment_date_choose, container, false);
+
+        this.sendRequestButton = (FloatingActionButton) view.findViewById(R.id.fab_send_request);
+
+        TextView code = (TextView) view.findViewById(R.id.textview_typeCode);
+        ImageView icon = (ImageView) view.findViewById(R.id.imageview_typeIcon);
+        TextView seats = (TextView) view.findViewById(R.id.textview_typeSeats);
+        TextView doors = (TextView) view.findViewById(R.id.textview_typeDoors);
+
+        code.setText(type.code);
+        Resources res = getContext().getResources();
+        String mDrawableName = type.code.toLowerCase();
+        int resID = res.getIdentifier(mDrawableName , "drawable", getContext().getPackageName());
+        icon.setImageResource(resID);
+        seats.setText(type.seats);
+        doors.setText(type.doors);
+
         dateStart = (TextView) view.findViewById(R.id.viewText_date_start);
         timeStart = (TextView) view.findViewById(R.id.viewText_time_start);
         dateEnd   = (TextView) view.findViewById(R.id.viewText_date_end);
         timeEnd   = (TextView) view.findViewById(R.id.viewText_time_end);
         setInitialDateTime();
-        
+
+        email = (TextView) view.findViewById(R.id.textView_account_email);
+        email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.length() != 0) {
+                    sendRequestButton.setVisibility(FloatingActionButton.VISIBLE);
+                }
+            }
+        });
+
         dateStartButton = (Button) view.findViewById(R.id.button_date_start);
         dateStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +151,20 @@ public class DateChooseActivityFragment extends Fragment {
             }
         });
 
+        emailButton = (Button) view.findViewById(R.id.button_account_email);
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setAccountEmail(view);
+            }
+        });
+
+        sendRequestButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendRequest(request);
+            }
+        });
 
         return view;
     }
@@ -124,25 +200,44 @@ public class DateChooseActivityFragment extends Fragment {
                 .show();
     }
 
+    public void setAccountEmail(View view) {
+        try {
+            Intent intent = AccountPicker.newChooseAccountIntent(null, null,
+                    new String[] {GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE}, false, null, null, null, null);
+            startActivityForResult(intent, REQUEST_CODE_EMAIL);
+        } catch (ActivityNotFoundException e) {
+            //// TODO: 12.01.2017 exception handler
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == REQUEST_CODE_EMAIL && resultCode == RESULT_OK) {
+            String accountName = intent.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+            email.setText(accountName);
+        }
+    }
 
     private void setInitialDateTime() {
         dateStart.setText(DateUtils.formatDateTime(getContext(),
                 dateAndTimeStart.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE));
+        request.setDateStart(dateStart.getText().toString());
 
         timeStart.setText(DateUtils.formatDateTime(getContext(),
                 dateAndTimeStart.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_TIME));
-
+        request.setTimeStart(timeStart.getText().toString());
 
         dateEnd.setText(DateUtils.formatDateTime(getContext(),
                 dateAndTimeEnd.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE));
-
+        request.setDateEnd(dateEnd.getText().toString());
 
         timeEnd.setText(DateUtils.formatDateTime(getContext(),
                 dateAndTimeEnd.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_TIME));
+        request.setTimeEnd(timeEnd.getText().toString());
     }
     
     DatePickerDialog.OnDateSetListener ds=new DatePickerDialog.OnDateSetListener() {
@@ -178,5 +273,11 @@ public class DateChooseActivityFragment extends Fragment {
             setInitialDateTime();
         }
     };
+
+    public void sendRequest(Request request) {
+        PushRequest pushRequest = new PushRequest();
+        pushRequest.setRequest(request);
+        pushRequest.execute();
+    }
 
 }

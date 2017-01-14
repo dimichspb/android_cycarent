@@ -114,11 +114,19 @@
     <string name="default_typeDoors">3</string>
 
     <string name="text_choose_type">Choose vehicle\'s type</string>
+    <string name="text_doors">Doors:</string>
+    <string name="text_seats">Seats:</string>
+    <string name="text_transmission">Transmission</string>
+    <string name="text_large_bags">Large bags:</string>
+    <string name="text_small_bags">Small bags:</string>
+    <string name="text_chosen_type">Chosen type:</string>
     <string name="text_choose_date_start">Start at:</string>
     <string name="hint_date_start">Date</string>
     <string name="hint_time_start">Time</string>
     <string name="text_choose_date_end">Finish at:</string>
     <string name="hint_date_end">Date</string>
     <string name="hint_time_end">Time</string>
-
+    <string name="text_your_email">Your email:</string>
+    <string name="hint_account_email">E-mail</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

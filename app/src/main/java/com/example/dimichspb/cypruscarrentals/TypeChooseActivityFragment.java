@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -32,7 +34,19 @@ public class TypeChooseActivityFragment extends Fragment {
         typesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Request request = new Request();
+                TextView typeCode = (TextView) view.findViewById(R.id.textview_typeCode);
+                TextView typeDoors = (TextView) view.findViewById(R.id.textview_typeDoors);
+                TextView typeSeats = (TextView) view.findViewById(R.id.textview_typeSeats);
+
+                Type type = new Type();
+                type.code = typeCode.getText().toString();
+                type.doors = typeDoors.getText().toString();
+                type.seats = typeSeats.getText().toString();
+
+                request.setType(type);
                 Intent intent = new Intent(getContext(), DateChooseActivity.class);
+                intent.putExtra("request", request);
                 startActivity(intent);
             }
         });

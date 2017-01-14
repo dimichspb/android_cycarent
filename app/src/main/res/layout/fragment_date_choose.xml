@@ -11,19 +11,31 @@
     tools:context="com.example.dimichspb.cypruscarrentals.DateChooseActivityFragment"
     tools:showIn="@layout/activity_date_choose">
 
-    <GridLayout
+    <TextView
+        android:id="@+id/textView_choosen_type"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="4"
-        android:rowCount="7"
-        android:orientation="horizontal"
+        android:layout_height="30dp"
+        android:text="@string/text_chosen_type"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
+
+    <include layout="@layout/item_type"
+        android:id="@+id/item_type"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="15"
+        android:orientation="horizontal"
+        android:layout_marginTop="80dp"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="false">
 
         <TextView
-            android:id="@+id/textview_chooseDateStart"
+            android:id="@+id/textView_chooseDateStart"
             android:layout_height="30dp"
             android:text="@string/text_choose_date_start"
             android:layout_gravity="fill_horizontal"
@@ -73,7 +85,7 @@
             android:layout_columnSpan="4"/>
 
         <TextView
-            android:id="@+id/textview_chooseDateEnd"
+            android:id="@+id/textView_chooseDateEnd"
             android:layout_height="30dp"
             android:text="@string/text_choose_date_end"
             android:layout_gravity="fill_horizontal"
@@ -114,13 +126,63 @@
             android:layout_column="3"
             android:id="@+id/button_time_end" />
 
-
         <Space
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_row="6"
+            android:layout_row="5"
+            android:layout_columnSpan="4"/>
+
+        <TextView
+            android:id="@+id/textView_your_email"
+            android:layout_height="30dp"
+            android:text="@string/text_your_email"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="7"
+            android:layout_columnSpan="4" />
+
+        <TextView
+            android:id="@+id/textView_account_email"
+            android:layout_height="wrap_content"
+            android:layout_row="8"
+            android:layout_columnSpan="3"
+            android:text="@string/hint_account_email"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+
+        <Button
+            android:text="..."
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_row="8"
+            android:id="@+id/button_account_email" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_row="10"
             android:layout_columnSpan="4"/>
 
     </GridLayout>
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="276dp"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="520dp"
+        android:id="@+id/button2" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_send_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:rotation="270"
+        android:src="@drawable/quantum_ic_keyboard_arrow_down_white_36"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

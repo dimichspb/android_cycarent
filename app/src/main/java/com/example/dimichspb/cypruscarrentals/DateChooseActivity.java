@@ -12,5 +12,6 @@ public class DateChooseActivity extends AbstractBaseActivity {
         setContentView(R.layout.activity_date_choose);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
