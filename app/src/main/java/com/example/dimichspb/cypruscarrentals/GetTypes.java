@@ -13,18 +13,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class LoadFeedData extends AsyncTask<Void, Void, ArrayList<Type>>{
+public class GetTypes extends AsyncTask<Void, Void, ArrayList<Type>>{
     private final String url = "http://api.carrent.dimichspb.webfactional.com/type";
+
+    private ArrayList<Type> typeList = new ArrayList<>();
 
     private final TypesAdapter adapter;
 
-    public LoadFeedData(TypesAdapter adapter) {
+    public GetTypes(TypesAdapter adapter) {
         this.adapter = adapter;
     }
 
     @Override
     protected ArrayList<Type> doInBackground(Void... params) {
-        ArrayList<Type> types = new ArrayList<Type>();
 
         try {
             URL url = new URL(this.url);
@@ -44,15 +45,15 @@ public class LoadFeedData extends AsyncTask<Void, Void, ArrayList<Type>>{
             for (int i=0; i < jsonArray.length(); i++) {
                 Type type = new Type();
                 type.fromJson(jsonArray.getJSONObject(i));
-                types.add(type);
+                typeList.add(type);
             }
         } catch (Throwable t) {
             t.printStackTrace();
         }
-        return types;
+        return typeList;
     }
 
-    protected void onPostExecute(ArrayList<Type> types) {
-        this.adapter.updateTypes(types);
+    protected void onPostExecute(ArrayList<Type> typeList) {
+        this.adapter.updateTypes(typeList);
     }
 }

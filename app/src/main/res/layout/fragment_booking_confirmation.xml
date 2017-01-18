@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_date_choose"
+    android:id="@+id/content_booking_confirmation"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.dimichspb.cypruscarrentals.DateChooseActivityFragment"
-    tools:showIn="@layout/activity_date_choose">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.dimichspb.cypruscarrentals.BookingConfirmationActivity"
+    tools:showIn="@layout/activity_booking_confirmation">
 
     <TextView
         android:id="@+id/textView_choosen_type"
@@ -26,8 +28,20 @@
     <include layout="@layout/item_date"
         android:id="@+id/item_date"/>
 
+    <TextView
+        android:id="@+id/textView_choosen_vehicle"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="@string/text_chosen_vehicle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
+
+    <include layout="@layout/item_vehicle"
+        android:id="@+id/item_vehicle"/>
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_send_request"
+        android:id="@+id/fab_confirm_booking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

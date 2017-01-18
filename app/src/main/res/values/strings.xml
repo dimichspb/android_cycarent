@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Cyprus Car Rentals</string>
-    <string name="action_type_choose">Rent a car</string>
+    <string name="action_type_choose">Choose car\'s type</string>
     <string name="action_about_us">About us</string>
     <string name="action_contact_us">Contact us</string>
     <string name="action_exit">Exit</string>
     <string name="title_activity_date_choose">Choose dates</string>
+    <string name="title_activity_vehicle_choose">Select car</string>
     <string name="title_activity_about_us">About Cyprus Car Rentals</string>
     <string name="title_activity_contact_ud">Contact Cyprus Car Rentals</string>
     <string name="large_text">
@@ -128,5 +129,15 @@
     <string name="hint_time_end">Time</string>
     <string name="text_your_email">Your email:</string>
     <string name="hint_account_email">E-mail</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="text_choose_vehicle">Select car</string>
+
+    <string name="default_vehicleModelVendorName">Ford</string>
+    <string name="default_vehicleModelName">Fiest</string>
+    <string name="default_vehicleColor">white</string>
+    <string name="default_vehiclePriceAmount">10</string>
+    <string name="default_vehiclePriceCurrencyCode">Ford</string>
+    <string name="default_vehicleProviderName">Larnaca Car Rentals</string>
+    <string name="title_activity_booking_confirmation">BookingConfirmation</string>
+    <string name="text_chosen_vehicle">Selected car:</string>
+
 </resources>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="4"
+    android:rowCount="15"
+    android:orientation="horizontal"
+    android:layout_marginTop="80dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentBottom="false">
+
+    <TextView
+        android:id="@+id/textView_chooseDateStart"
+        android:layout_height="30dp"
+        android:text="@string/text_choose_date_start"
+        android:layout_gravity="fill_horizontal"
+        android:layout_columnSpan="4"
+        android:layout_row="0"
+        android:layout_column="0" />
+
+    <TextView
+        android:id="@+id/viewText_date_start"
+        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:text="@string/hint_date_start"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+
+    <Button
+        android:text="..."
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:id="@+id/button_date_start"/>
+
+    <TextView
+        android:id="@+id/viewText_time_start"
+        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_row="1"
+        android:layout_column="2"
+        android:text="@string/hint_time_start"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+
+    <Button
+        android:text="..."
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="3"
+        android:id="@+id/button_time_start"/>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_row="2"
+        android:layout_columnSpan="4"/>
+
+    <TextView
+        android:id="@+id/textView_chooseDateEnd"
+        android:layout_height="30dp"
+        android:text="@string/text_choose_date_end"
+        android:layout_gravity="fill_horizontal"
+        android:layout_row="3"
+        android:layout_columnSpan="4" />
+
+    <TextView
+        android:id="@+id/viewText_date_end"
+        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:text="@string/hint_date_end"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+    <Button
+        android:text="..."
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_row="5"
+        android:layout_column="1"
+        android:id="@+id/button_date_end" />
+
+    <TextView
+        android:id="@+id/viewText_time_end"
+        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_row="5"
+        android:layout_column="2"
+        android:text="@string/hint_time_end"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+    <Button
+        android:text="..."
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_row="5"
+        android:layout_column="3"
+        android:id="@+id/button_time_end" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_row="5"
+        android:layout_columnSpan="4"/>
+
+    <TextView
+        android:id="@+id/textView_your_email"
+        android:layout_height="30dp"
+        android:text="@string/text_your_email"
+        android:layout_gravity="fill_horizontal"
+        android:layout_row="7"
+        android:layout_columnSpan="4" />
+
+    <TextView
+        android:id="@+id/textView_account_email"
+        android:layout_height="wrap_content"
+        android:layout_row="8"
+        android:layout_columnSpan="3"
+        android:text="@string/hint_account_email"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+
+    <Button
+        android:text="..."
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_row="8"
+        android:id="@+id/button_account_email" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_row="10"
+        android:layout_columnSpan="4"/>
+
+</GridLayout>

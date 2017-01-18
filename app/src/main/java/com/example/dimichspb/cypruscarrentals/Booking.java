@@ -3,9 +3,9 @@ package com.example.dimichspb.cypruscarrentals;
 import java.io.Serializable;
 
 @SuppressWarnings("serial") //With this annotation we are going to hide compiler warnings
-public class Request implements Serializable {
+public class Booking implements Serializable {
     private Integer id;
-    private Type type;
+    private Vehicle vehicle;
     private String dateStart;
     private String timeStart;
     private String dateEnd;
@@ -15,7 +15,7 @@ public class Request implements Serializable {
     private String email;
 
 
-    public Request() {
+    public Booking() {
     }
 
     public Integer getId() {
@@ -26,12 +26,12 @@ public class Request implements Serializable {
         this.id = id;
     }
 
-    public Type getType() {
-        return this.type;
+    public Vehicle getVehicle() {
+        return this.vehicle;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public String getDateStart() {

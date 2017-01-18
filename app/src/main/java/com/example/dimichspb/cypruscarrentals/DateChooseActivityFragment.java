@@ -26,6 +26,8 @@ import android.widget.TimePicker;
 import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.common.AccountPicker;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -35,7 +37,6 @@ import static android.app.Activity.RESULT_OK;
  * A placeholder fragment containing a simple view.
  */
 public class DateChooseActivityFragment extends Fragment {
-
 
     TextView dateStart;
     TextView timeStart;
@@ -71,6 +72,9 @@ public class DateChooseActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        dateAndTimeStart.setTimeInMillis(dateAndTimeStart.getTimeInMillis() + 604800000);
+        dateAndTimeEnd.setTimeInMillis(dateAndTimeStart.getTimeInMillis() + 604800000);
+
         Intent intent = getActivity().getIntent();
         this.request = (Request) intent.getSerializableExtra("request");
 
@@ -80,11 +84,13 @@ public class DateChooseActivityFragment extends Fragment {
 
         this.sendRequestButton = (FloatingActionButton) view.findViewById(R.id.fab_send_request);
 
+        TextView id = (TextView) view.findViewById(R.id.textview_typeId);
         TextView code = (TextView) view.findViewById(R.id.textview_typeCode);
         ImageView icon = (ImageView) view.findViewById(R.id.imageview_typeIcon);
         TextView seats = (TextView) view.findViewById(R.id.textview_typeSeats);
         TextView doors = (TextView) view.findViewById(R.id.textview_typeDoors);
 
+        id.setText(type.id);
         code.setText(type.code);
         Resources res = getContext().getResources();
         String mDrawableName = type.code.toLowerCase();
@@ -159,12 +165,7 @@ public class DateChooseActivityFragment extends Fragment {
             }
         });
 
-        sendRequestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendRequest(request);
-            }
-        });
+        sendRequestButton.setOnClickListener(new RequestOnClickListener(this.request));
 
         return view;
     }
@@ -215,6 +216,7 @@ public class DateChooseActivityFragment extends Fragment {
         if (requestCode == REQUEST_CODE_EMAIL && resultCode == RESULT_OK) {
             String accountName = intent.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
             email.setText(accountName);
+            request.setEmail(accountName);
         }
     }
 
@@ -229,6 +231,10 @@ public class DateChooseActivityFragment extends Fragment {
                 DateUtils.FORMAT_SHOW_TIME));
         request.setTimeStart(timeStart.getText().toString());
 
+        Long startAt = dateAndTimeStart.getTimeInMillis() / 1000;
+
+        request.setStartAt(startAt);
+
         dateEnd.setText(DateUtils.formatDateTime(getContext(),
                 dateAndTimeEnd.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE));
@@ -238,6 +244,10 @@ public class DateChooseActivityFragment extends Fragment {
                 dateAndTimeEnd.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_TIME));
         request.setTimeEnd(timeEnd.getText().toString());
+
+        Long endAt = dateAndTimeEnd.getTimeInMillis() / 1000;
+
+        request.setDuration(endAt - startAt);
     }
     
     DatePickerDialog.OnDateSetListener ds=new DatePickerDialog.OnDateSetListener() {
@@ -273,11 +283,4 @@ public class DateChooseActivityFragment extends Fragment {
             setInitialDateTime();
         }
     };
-
-    public void sendRequest(Request request) {
-        PushRequest pushRequest = new PushRequest();
-        pushRequest.setRequest(request);
-        pushRequest.execute();
-    }
-
 }

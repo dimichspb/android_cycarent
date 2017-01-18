@@ -2,13 +2,13 @@ package com.example.dimichspb.cypruscarrentals;
 
 
 import android.os.AsyncTask;
+import android.util.Log;
+import android.view.View;
 
-import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -16,15 +16,18 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class PushRequest extends AsyncTask<Void, Void, ArrayList<Type>>{
-    private final String url = "http://api.carrent.dimichspb.webfactional.com/request";
+public class PushRequest extends AsyncTask<Void, Void, Request> {
+    private final String url = "http://api.carrent.dimichspb.webfactional.com/request/create";
     private Request request;
+
+    public PushRequest(Request request) {
+        this.request = request;
+    }
+
+    public RequestResponse requestResponse = null;
 
     public Request getRequest() {
         return request;
@@ -35,10 +38,10 @@ public class PushRequest extends AsyncTask<Void, Void, ArrayList<Type>>{
     }
 
     @Override
-    protected ArrayList<Type> doInBackground(Void... params) {
+    protected Request doInBackground(Void... params) {
+        String response = "";
 
         try {
-            String response = "";
             URL url = new URL(this.url);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setReadTimeout(15000);
@@ -58,12 +61,14 @@ public class PushRequest extends AsyncTask<Void, Void, ArrayList<Type>>{
             os.close();
             int responseCode=connection.getResponseCode();
 
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
+            if (responseCode == HttpsURLConnection.HTTP_CREATED) {
                 String line;
                 BufferedReader br=new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 while ((line=br.readLine()) != null) {
                     response+=line;
                 }
+                JSONObject jsonObject = new JSONObject(response);
+                this.request.setId(jsonObject.getInt("id"));
             }
             else {
                 response="";
@@ -72,19 +77,19 @@ public class PushRequest extends AsyncTask<Void, Void, ArrayList<Type>>{
         } catch (Throwable t) {
             t.printStackTrace();
         }
-
-        return null;
+        return this.request;
     }
 
-    protected void onPostExecute(ArrayList<Type> types) {
+    protected void onPostExecute(Request request) {
+        requestResponse.processFinish(this.request);
     }
 
     private String getPostDataString(Request request) throws UnsupportedEncodingException{
         StringBuilder result = new StringBuilder();
 
-        result.append(URLEncoder.encode("code", "UTF-8"));
+        result.append(URLEncoder.encode("type_id", "UTF-8"));
         result.append("=");
-        result.append(URLEncoder.encode(request.getType().code, "UTF-8"));
+        result.append(URLEncoder.encode(request.getType().id, "UTF-8"));
 
         result.append("&");
 
@@ -94,27 +99,15 @@ public class PushRequest extends AsyncTask<Void, Void, ArrayList<Type>>{
 
         result.append("&");
 
-        result.append(URLEncoder.encode("date_start", "UTF-8"));
+        result.append(URLEncoder.encode("start_at", "UTF-8"));
         result.append("=");
-        result.append(URLEncoder.encode(request.getDateStart(), "UTF-8"));
+        result.append(URLEncoder.encode(request.getStartAt().toString(), "UTF-8"));
 
         result.append("&");
 
-        result.append(URLEncoder.encode("time_start", "UTF-8"));
+        result.append(URLEncoder.encode("duration", "UTF-8"));
         result.append("=");
-        result.append(URLEncoder.encode(request.getTimeStart(), "UTF-8"));
-
-        result.append("&");
-
-        result.append(URLEncoder.encode("date_end", "UTF-8"));
-        result.append("=");
-        result.append(URLEncoder.encode(request.getDateEnd(), "UTF-8"));
-
-        result.append("&");
-
-        result.append(URLEncoder.encode("time_end", "UTF-8"));
-        result.append("=");
-        result.append(URLEncoder.encode(request.getTimeEnd(), "UTF-8"));
+        result.append(URLEncoder.encode(request.getDuration().toString(), "UTF-8"));
 
         return result.toString();
     }

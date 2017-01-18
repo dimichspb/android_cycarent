@@ -52,6 +52,14 @@
                 android:value="com.example.dimichspb.cypruscarrentals.TypeChooseActivity" />
             >
         </activity>
+        <activity
+            android:name=".VehicleChooseActivity"
+            android:label="@string/title_activity_vehicle_choose"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BookingConfirmationActivity"
+            android:label="@string/title_activity_booking_confirmation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

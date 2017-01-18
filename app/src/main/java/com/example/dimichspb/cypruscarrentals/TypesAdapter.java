@@ -17,6 +17,7 @@ import org.w3c.dom.Text;
 
 public class TypesAdapter extends ArrayAdapter<Type> {
     private static class ViewHolder {
+        TextView id;
         TextView code;
         ImageView icon;
         TextView seats;
@@ -38,6 +39,7 @@ public class TypesAdapter extends ArrayAdapter<Type> {
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_type, parent, false);
+            viewHolder.id = (TextView) convertView.findViewById(R.id.textview_typeId);
             viewHolder.code = (TextView) convertView.findViewById(R.id.textview_typeCode);
             viewHolder.icon = (ImageView) convertView.findViewById(R.id.imageview_typeIcon);
             viewHolder.seats = (TextView) convertView.findViewById(R.id.textview_typeSeats);
@@ -48,6 +50,7 @@ public class TypesAdapter extends ArrayAdapter<Type> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         // Populate the data into the template view using hte data object
+        viewHolder.id.setText(type.id);
         viewHolder.code.setText(type.code);
         Resources res = getContext().getResources();
         String mDrawableName = type.code.toLowerCase();

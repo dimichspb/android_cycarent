@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Type implements Serializable {
+    public String id;
     public String code;
     public String icon;
     public String seats;
@@ -17,6 +18,7 @@ public class Type implements Serializable {
 
     public void fromJson(JSONObject object) {
         try {
+            this.id = object.getString("id");
             this.code = object.getString("code");
             this.icon = "@drawable/" + this.code;
             this.seats = object.getString("seats");
@@ -24,19 +26,5 @@ public class Type implements Serializable {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    public static ArrayList<Type> fromJson(JSONArray jsonObjects) {
-        ArrayList<Type> types = new ArrayList<Type>();
-        for (int i =0; i < jsonObjects.length(); i++) {
-             try {
-                 Type type = new Type();
-                 type.fromJson(jsonObjects.getJSONObject(i));
-                 types.add(type);
-             } catch (JSONException e) {
-                 e.printStackTrace();
-             }
-        }
-        return types;
     }
 }

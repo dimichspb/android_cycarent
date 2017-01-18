@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textview_vehicleId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/textview_vehicleNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/textview_vehicleModelVendorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_vehicleModelVendorName"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textview_vehicleModelName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textview_vehicleModelVendorName"
+        android:layout_toRightOf="@+id/textview_vehicleModelVendorName"
+        android:layout_marginLeft="15dp"
+        android:text="@string/default_vehicleModelName"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textview_vehicleColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textview_vehicleModelVendorName"
+        android:layout_toRightOf="@+id/textview_vehicleModelName"
+        android:layout_marginLeft="15dp"
+        android:text="@string/default_vehicleColor" />
+
+    <TextView
+        android:id="@+id/textview_vehiclePriceAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textview_vehicleModelVendorName"
+        android:layout_toRightOf="@+id/textview_vehicleColor"
+        android:layout_marginLeft="15dp"
+        android:text="@string/default_vehiclePriceAmount"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textview_vehiclePriceCurrencyCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textview_vehicleModelVendorName"
+        android:layout_toRightOf="@+id/textview_vehiclePriceAmount"
+        android:layout_marginLeft="15dp"
+        android:text="@string/default_vehiclePriceCurrencyCode"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textview_vehicleProviderName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_vehicleModelVendorName"
+        android:text="@string/default_vehicleProviderName"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
