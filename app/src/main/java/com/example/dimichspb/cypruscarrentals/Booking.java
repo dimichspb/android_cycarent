@@ -6,6 +6,16 @@ import java.io.Serializable;
 public class Booking implements Serializable {
     private Integer id;
     private Vehicle vehicle;
+    private Request request;
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
+    }
+
     private String dateStart;
     private String timeStart;
     private String dateEnd;

@@ -57,6 +57,7 @@ public class VehicleChooseActivityFragment extends Fragment {
                 vehicle.provider_name = vehicleProviderName.getText().toString();
 
                 booking.setVehicle(vehicle);
+                booking.setRequest(request);
                 Intent intent = new Intent(getContext(), BookingConfirmationActivity.class);
                 intent.putExtra("booking", booking);
                 startActivity(intent);

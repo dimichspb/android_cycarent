@@ -139,5 +139,8 @@
     <string name="default_vehicleProviderName">Larnaca Car Rentals</string>
     <string name="title_activity_booking_confirmation">BookingConfirmation</string>
     <string name="text_chosen_vehicle">Selected car:</string>
+    <string name="title_activity_voucher">Congratulations!</string>
+    <string name="hint_booking_voucher">Your booking voucher will be sent to you by email</string>
+    <string name="hint_congratulations">Congratulations!</string>
 
 </resources>

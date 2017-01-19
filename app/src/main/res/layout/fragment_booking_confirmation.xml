@@ -9,8 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.dimichspb.cypruscarrentals.BookingConfirmationActivity"
+    tools:context="com.example.dimichspb.cypruscarrentals.BookingConfirmationActivityFragment"
     tools:showIn="@layout/activity_booking_confirmation">
 
     <TextView
@@ -33,12 +32,15 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:text="@string/text_chosen_vehicle"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/item_date"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true" />
 
-    <include layout="@layout/item_vehicle"
-        android:id="@+id/item_vehicle"/>
+    <LinearLayout android:layout_below="@+id/textView_choosen_vehicle"
+        android:layout_height="wrap_content" android:layout_width="fill_parent">
+        <include layout="@layout/item_vehicle"
+            android:id="@+id/item_vehicle" />
+    </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_confirm_booking"

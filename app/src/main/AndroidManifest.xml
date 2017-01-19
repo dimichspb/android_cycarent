@@ -21,7 +21,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -55,11 +54,30 @@
         <activity
             android:name=".VehicleChooseActivity"
             android:label="@string/title_activity_vehicle_choose"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dimichspb.cypruscarrentals.DateChooseActivity" />
+            >
+        </activity>
         <activity
             android:name=".BookingConfirmationActivity"
             android:label="@string/title_activity_booking_confirmation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dimichspb.cypruscarrentals.VehicleChooseActivity" />
+            >
+        </activity>
+        <activity
+            android:name=".VoucherActivity"
+            android:label="@string/title_activity_voucher"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.dimichspb.cypruscarrentals.TypeChooseActivity" />
+            >
+        </activity>
     </application>
 
 </manifest>
